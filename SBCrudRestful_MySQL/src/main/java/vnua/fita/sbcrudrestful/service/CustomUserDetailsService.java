@@ -1,5 +1,7 @@
 package vnua.fita.sbcrudrestful.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import vnua.fita.sbcrudrestful.dto.UserRequest;
+import vnua.fita.sbcrudrestful.model.OrderDetail;
 import vnua.fita.sbcrudrestful.model.User;
+import vnua.fita.sbcrudrestful.repository.OrderDetailRepository;
 import vnua.fita.sbcrudrestful.repository.UserRepository;
 
 @Service
@@ -17,6 +21,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
 
     @Autowired
     @Lazy
@@ -58,4 +65,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
 
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow();
+    }
+    
+    public List<OrderDetail> getOrderDetailsByOrderId(Long orderId) {
+        return orderDetailRepository.findByOrderId(orderId);
+    }
 }

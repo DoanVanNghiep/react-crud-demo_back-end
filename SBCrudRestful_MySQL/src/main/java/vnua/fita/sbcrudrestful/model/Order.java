@@ -3,6 +3,7 @@ package vnua.fita.sbcrudrestful.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Orders")
@@ -30,6 +31,10 @@ public class Order {
 
     @Column(name = "note")
     private String note;
+    
+    @Column(name = "status")
+    private int status;
+    
     
     // Getters and Setters
 
@@ -88,4 +93,13 @@ public class Order {
     public void setNote(String note) {
         this.note = note;
     }
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+    
 }

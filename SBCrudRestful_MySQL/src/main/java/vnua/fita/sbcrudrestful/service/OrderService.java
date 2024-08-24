@@ -2,6 +2,9 @@ package vnua.fita.sbcrudrestful.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import vnua.fita.sbcrudrestful.dto.OrderDTO;
+import vnua.fita.sbcrudrestful.dto.OrderRequest;
 import vnua.fita.sbcrudrestful.model.Order;
 import vnua.fita.sbcrudrestful.model.OrderDetail;
 import vnua.fita.sbcrudrestful.repository.OrderDetailRepository;
@@ -27,6 +30,15 @@ public class OrderService {
         return savedOrder;
     }
 
+    public List<Order> getAllOrder(){
+    	return orderRepository.findAll();
+    }
+    
+    public List<OrderDetail> getAllOrderDetail(){
+    	return orderDetailRepository.findAll();
+    }
+    
+    
     public Order getOrderById(Long orderId) {
         return orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
     }
